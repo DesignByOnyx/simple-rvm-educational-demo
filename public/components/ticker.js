@@ -4,10 +4,15 @@ import Component from 'react-view-model/component';
 
 const ViewModel = DefineMap.extend('ExampleVM', {
   count: {
-    default: 0
+    get(lastVal) {
+      return lastVal || 0;
+    }
   },
   tick() {
     this.count++;
+    if (typeof this.onTick === 'function') {
+      this.onTick(this.count);
+    }
   }
 });
 

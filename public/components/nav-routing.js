@@ -5,7 +5,7 @@ const Nav = ({ items }) => (
   <nav>
     {
       items.map((item, i) => (
-        <a key={`item-${i}`} href={route.url({ currentModuleId: item.moduleId })}>
+        <a key={`link-${i}`} href={route.url({ currentModuleId: item.moduleId })}>
           {item.title}
         </a>
       ))

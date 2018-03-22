@@ -27,7 +27,7 @@ const ViewModel = DefineMap.extend('AdvancedDemoVM', {
   },
   currentModuleId: {
     type: 'string',
-    // default: 'hello-world'
+    default: 'ticker'
   },
   CurrentModule: {
     get() {

@@ -31,6 +31,12 @@ const ViewModel = DefineMap.extend('AdvancedDemoVM', {
     type: 'string',
     default: 'hello-world'
   },
+  count: {
+    type: 'number'
+  },
+  handleTick(count) {
+    this.count = count;
+  },
   CurrentModule: {
     get() {
       return pageModules[this.currentModuleId] || NotFound;
@@ -38,6 +44,7 @@ const ViewModel = DefineMap.extend('AdvancedDemoVM', {
   },
   init() {
     route.register('/public/{currentModuleId}');
+    route.register('/public/{currentModuleId}/{count}');
     route.data = this;
     route.start();
   }
@@ -47,11 +54,11 @@ class AppComponent extends Component {
   static ViewModel = ViewModel;
 
   render() {
-    const { navItems, CurrentModule, handleLinkClick } = this.viewModel;
+    const { navItems, handleTick, count, CurrentModule } = this.viewModel;
     return (
       <div>
         <NavRouting items={navItems} />
-        <CurrentModule />
+        <CurrentModule onTick={handleTick} count={count} />
       </div>
     );
   }
